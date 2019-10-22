@@ -1,4 +1,3 @@
-
 #include <algorithm>
 #include <stdlib.h>
 #include <math.h>
@@ -19,10 +18,10 @@
 
 using namespace std;
 
-vector < string > split(const string &s, const char &delim) {
+vector <string> split(const string &s, const char &delim) {
     stringstream ss(s);
     string item;
-    vector < string > elems;
+    vector <string> elems;
     while (getline(ss, item, delim)) {
         elems.push_back(item);
     }
@@ -32,7 +31,7 @@ vector < string > split(const string &s, const char &delim) {
 bool isValidDateStringSymbolsExternal(const string& str) {
     int cnt = 0;
 
-    set < char > allowedSymbols = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-'};
+    set <char> allowedSymbols = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-'};
 
     for (const auto& c: str) {
         if (allowedSymbols.count(c) == 0) {
@@ -55,7 +54,7 @@ bool isValidDateStringSymbolsExternal(const string& str) {
         return false;
     }
 
-    vector < string > str_split = split(str, '-');
+    vector <string> str_split = split(str, '-');
     if (str[0] != '-') {
         for (const auto& s: str_split) {
             if (s.length() == 0){
@@ -251,6 +250,7 @@ istream& operator >> (istream& stream, Date& date){
 
 class Database {
 public:
+    Database();
     void AddEvent(const Date& date, const string& event) {
         if (!event.empty()) {
             database[date].insert(event);
@@ -273,9 +273,9 @@ public:
 		return ans;
     }
 
-    set < string > Find(const Date& date) const {
-		set < string > ans;
-		if (database.count(date ) > 0){
+    set <string> Find(const Date& date) const {
+		set <string> ans;
+		if (database.count(date) > 0){
 			ans = database.at(date);
 		}
 		return ans;
@@ -284,20 +284,28 @@ public:
     void Print() const {
 		for (const auto& date : database){
 			for (auto event : date.second){
-				cout << date.first << ' ' << event << endl;
+				   cout << date.first << ' ' << event << endl;
 			}
 		}
     }
 
 public:
-    map < Date , set < string > > database;
+    map <Date, set <string>> database;
 };
+
+Database::Database(void) {
+   cout << "##    #   ###   #   ##    #   ###  ###" << endl;
+   cout << "# #  # #   #   # #  # #  # #  #    #  " << endl;
+   cout << "# #  ###   #   ###  ##   ###  ###  ## " << endl;
+   cout << "# #  # #   #   # #  # #  # #    #  #  " << endl;
+   cout << "##   # #   #   # #  ###  # #  ###  ###" << endl;
+}
 
 int main() {
 //    freopen( "input.txt", "r+", stdin );
 //    freopen("output.txt", "w+", stdout);
 
-    bool unitTest = true;
+    /*bool unitTest = true;
     if (unitTest) {
         {
             cout << "Comparator test:" << endl;
@@ -341,12 +349,12 @@ int main() {
         {
             cout << "Split test:" << endl;
 
-            cout << (split("1-1-1",   '-') == vector < string > {"1", "1", "1"}    ) << " ";
-            cout << (split("-1-1-1",  '-') == vector < string > {"", "1", "1", "1"}) << " ";
-            cout << (split("1-1-1-",  '-') == vector < string > {"1", "1", "1"}    ) << " ";
-            cout << (split("-1-1-1-", '-') == vector < string > {"", "1", "1", "1"}) << " ";
+            cout << (split("1-1-1",   '-') == vector <string> {"1", "1", "1"}    ) << " ";
+            cout << (split("-1-1-1",  '-') == vector <string> {"", "1", "1", "1"}) << " ";
+            cout << (split("1-1-1-",  '-') == vector <string> {"1", "1", "1"}    ) << " ";
+            cout << (split("-1-1-1-", '-') == vector <string> {"", "1", "1", "1"}) << " ";
 
-            cout << (split("1-1-1",   '-') == vector < string > {"1", "1", "1"}    ) << " ";
+            cout << (split("1-1-1",   '-') == vector <string> {"1", "1", "1"}    ) << " ";
 
             cout << endl << "Done!" << endl << endl;
         }
@@ -472,7 +480,7 @@ int main() {
         }
 
         return 0;
-    }
+    } */
 
     Database db;
 
