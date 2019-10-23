@@ -274,19 +274,19 @@ public:
     }
 
     set <string> Find(const Date& date) const {
-		set <string> ans;
-		if (database.count(date) > 0){
-			ans = database.at(date);
-		}
-		return ans;
+  		set <string> ans;
+  		if (database.count(date) > 0){
+  			ans = database.at(date);
+  		}
+  		return ans;
     }
 
     void Print() const {
-		for (const auto& date : database){
-			for (auto event : date.second){
-				   cout << date.first << ' ' << event << endl;
-			}
-		}
+  		for (const auto& date : database){
+  			for (auto event : date.second){
+  				   cout << date.first << ' ' << event << endl;
+  			}
+  		}
     }
 
 public:
@@ -302,8 +302,8 @@ Database::Database(void) {
 }
 
 int main() {
-//    freopen( "input.txt", "r+", stdin );
-//    freopen("output.txt", "w+", stdout);
+    freopen( "input.txt", "r+", stdin );
+    freopen("output.txt", "w+", stdout);
 
     /*bool unitTest = true;
     if (unitTest) {
@@ -488,6 +488,7 @@ int main() {
     while (getline(cin, inputLine)) {
 
     }
+
 
     fclose(stdin);
     fclose(stdout);
