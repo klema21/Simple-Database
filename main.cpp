@@ -254,14 +254,18 @@ public:
     void AddEvent(const Date& date, const string& event) {
         if (!event.empty()) {
             database[date].insert(event);
+            cout << "Event successfuly added!" << endl;
         }
     }
 
     bool DeleteEvent(const Date& date, const string& event) {
-		if (database[date].erase(event) > 0)
-			return true;
-		else
-			return false;
+  		if (database[date].erase(event) > 0) {
+        cout << "Event successfuly deleted!" << endl;
+  			return true;
+      } else {
+        cout << "There's no such event or date!" << endl;
+  			return false;
+      }
     }
 
     int DeleteDate(const Date& date) {
@@ -302,8 +306,8 @@ Database::Database(void) {
 }
 
 int main() {
-    freopen( "input.txt", "r+", stdin );
-    freopen("output.txt", "w+", stdout);
+    // freopen( "input.txt", "r+", stdin );
+    // freopen("output.txt", "w+", stdout);
 
     /*bool unitTest = true;
     if (unitTest) {
@@ -484,10 +488,37 @@ int main() {
 
     Database db;
 
-    string inputLine;
-    while (getline(cin, inputLine)) {
+    ifstream input("input.txt");
+    string command = "START";
+    string event;
+    Date date;
 
+    while (command != "END") {
+      cout << "Enter command: "; cin >> command;
+      if (command == "ADD") {
+        cout << "Please enter date: "; cin >> date;
+        cout << "Please enter event: "; cin >> event;
+        db.AddEvent(date, event);
+      } else if (command == "DEL") {
+        cout << "Please enter date: "; cin >> date;
+        cout << "Please enter event: "; cin >> event;
+        db.DeleteEvent(date, event);
+      } else if (command == "FIND") {
+        cout << "Please enter date: "; cin >> date;
+        db.Find(date);
+      } else if (command == "PRINT") {
+          db.Print();
+      }
     }
+
+    cout << "Goodbye!" << endl;
+
+    string inputLine;
+    while (getline(input, inputLine)) {
+      cout << inputLine << endl;
+    }
+
+
 
 
     fclose(stdin);
