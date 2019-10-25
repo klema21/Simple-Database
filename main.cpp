@@ -254,13 +254,13 @@ public:
     void AddEvent(const Date& date, const string& event) {
         if (!event.empty()) {
             database[date].insert(event);
-            cout << "Event successfuly added!" << endl;
+            cout << "Event successfully added!" << endl;
         }
     }
 
     bool DeleteEvent(const Date& date, const string& event) {
   		if (database[date].erase(event) > 0) {
-        cout << "Event successfuly deleted!" << endl;
+        cout << "Event successfully deleted!" << endl;
   			return true;
       } else {
         cout << "There's no such event or date!" << endl;
